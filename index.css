@@ -1,0 +1,41 @@
+.botonoutfitter
+{
+color: white;
+border: none;
+margin-left: 50px;
+position: relative;
+top: 15px;
+
+
+}
+body
+{
+    background-color:lightgray;
+}
+nav
+{
+    background-color: grey;
+}
+.outfitterprincipal
+{
+    color: black;
+    font-size: 125px;
+    text-align: center;
+    font-family: 'Saira ExtraCondensed', sans-serif;
+    margin-top: 150px;
+}
+.botonayuda
+{
+    color: white;
+    border: none;
+    margin-left: 1300px;
+}
+.logoboton
+{
+    position: relative;
+    left: 20px;
+    top: 20px;
+}
+.logoboton img {
+    width: 30px;
+}
