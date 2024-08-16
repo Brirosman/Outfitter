@@ -5,7 +5,7 @@ border: none;
 margin-left: 50px;
 position: relative;
 top: 15px;
-
+text-decoration: none;
 
 }
 body
@@ -29,6 +29,7 @@ nav
     color: white;
     border: none;
     margin-left: 1300px;
+    text-decoration: none;
 }
 .logoboton
 {

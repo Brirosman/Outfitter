@@ -1,0 +1,89 @@
+.outfittergrande
+{
+    color:black;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 100px;
+}
+.botonoutfitter
+{
+color: white;
+border: none;
+margin-left: 50px;
+position: relative;
+top: 15px;
+text-decoration: none;
+
+
+}
+body
+{
+    background-color:lightgray;
+}
+nav
+{
+    background-color: grey;
+}
+.botonayuda
+{
+    color: white;
+    border: none;
+    margin-left: 1300px;
+    text-decoration: none;
+}
+.logoboton
+{
+    position: relative;
+    left: 20px;
+    top: 20px;
+}
+.logoboton img {
+    width: 30px;
+}
+.dequetrata
+{
+   margin-left: 565px;
+    text-align: center;
+    display: inline-block;
+    padding: 20px 40px;
+    border: 2px solid grey;
+    border-radius: 30px;
+    text-decoration: none;
+    color: grey;
+    font-size: 15px;
+    background-color: lightgray;
+
+
+}
+.preguntasfrecuentes
+{
+    text-align: center;
+    font-size: 40px;
+}
+.comousar
+{
+   margin-left: 570px;
+   margin-top: 10px;
+    text-align: center;
+    display: inline-block;
+    padding: 20px 40px;
+    border: 2px solid grey;
+    border-radius: 30px;
+    text-decoration: none;
+    color: grey;
+    font-size: 15px;
+    background-color: lightgray;
+
+
+}
+.volver
+{
+    font-size: 50px;
+    text-decoration: none;
+    text-align: center;
+    color: grey;
+    position: relative;
+    top: 120px;
+    right: 205px;
+
+}
