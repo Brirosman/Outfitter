@@ -1,25 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outfitter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Saira+ExtraCondensed:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="media/png" href="media/Logo1.png">   
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
 
 </head>
 <body>
     <header>
-        <nav>
-            <a class="logoboton" href="index.html">
-                <img src="logo.png">
-            </a>
-            <a class="botonoutfitter" href="outfitter.html">Outfitter</a>
-            <a class="botonayuda" href="ayuda.html">Ayuda</a>
-            <link rel="stylesheet" href="index.css">
-            <link rel="stylesheet" href="styles.css">
-        </nav>
+        <div class="container">
+            <p class="logo">OUTFITTER</p>
+            <nav>
+                <a href="#hero">Inicio</a>
+                <a href="#somos-proya">Quienes Somos</a>
+                <a href="#nuestros-programas">Contenidos</a>
+                <a href="#caracteristicas">Características</a>
+            </nav>
+        </div>
     </header>
-    <h1 class="outfitterprincipal">OUTFITTER</h1>
+
+    <section id="inicio">
+        <div class="container">
+            <h4>OUTFITTER</h4>
+        </div>
+    </section>
+
+
+    <section id="hero">
+        <h1>ENCUENTRA DONDE COMPRAR <br>TUS PRENDAS DE ROPA</h1>
+        <a href="http://127.0.0.1:5500/links.html"><button>Comenzar</button></a>
+    </section>
+
+    <section id="somos-proya">
+        <div class="container">
+            <div class="img-container" data-aos="fade-right"></div>
+            <div class="texto" data-aos="fade-left">
+
+                <h2>Somos <span class="color-acento">Outfitter</span></h2>
+                <p>Outfitter es un sitio web en el que podes encontrar las prendas de ropa cuando quieras, simplemente utilizando una imagen, al insertar la foto, una inteligencia analiza los rasgos de la prenda y te manda los links en donde podes comprarla.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="nuestros-programas">
+        <div class="container">
+            <h2>Contenidos</h2>
+            <div class="programas">
+    
+                <div class="carta" data-aos="zoom-in">
+                    <h3>Insertar imágenes y fotos</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt vero corporis incidunt saepe qui commodi quasi neque veniam quam, aspernatur est beatae maxime animi sed reiciendis mollitia ducimus veritatis repellendus?</p>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          + Info
+                        </button>
+                        <ul class="dropdown-menu">
+                          <p>informacion al respecto</p>
+                        </ul>
+                      </div>
+                </div>
+                
+    
+                <div class="carta" data-aos="zoom-in">
+                    <h3>La Inteligencia artificial</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt vero corporis incidunt saepe qui commodi quasi neque veniam quam, aspernatur est beatae maxime animi sed reiciendis mollitia ducimus veritatis repellendus?</p>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          + Info
+                        </button>
+                        <ul class="dropdown-menu">
+                          <p>informacion al respecto</p>
+                        </ul>
+                      </div>
+                    </div>
+                
+    
+                <div class="carta" data-aos="zoom-in">
+                    <h3>Añadir búsquedas y filtros</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt vero corporis incidunt saepe qui commodi quasi neque veniam quam, aspernatur est beatae maxime animi sed reiciendis mollitia ducimus veritatis repellendus?</p>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          + Info
+                        </button>
+                        <ul class="dropdown-menu">
+                          <p>informacion al respecto</p>
+                        </ul>
+                      </div>
+                    </div>
+                </div>  
+        </div>
+            
+    </section>
+
+    <section id="caracteristicas">
+        <div class="container" data-aos="flip-up">
+            <ul>
+                <li>✔️ Rapido</li>
+                <li>✔️ Accesible</li>
+                <li>✔️ Gratuitos</li>
+                <li>✔️ Facil de usar</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="final">
+        <h2>Listo para buscar?</h2>
+        <a href="http://127.0.0.1:5500/links.html"><button class="comenzar2">Comenzar</button></a>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Outfitter 2024</p>
+        </div>
+    </footer>
 </body>
 </html>
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
