@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfitter</title>
+    <link rel="stylesheet" href="links.css">
+  
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">OUTFITTER</div>
+            <div class="menu">
+                <a href="#" class="menu-item">BUSCAR</a>
+                <a href="#" class="menu-item">AYUDA</a>
+            </div>
+        </header>
+        <main>
+            <a href="http://127.0.0.1:5500/index.html"><button>VOLVER</button></a>
+            <img src="media/Union.png" alt="Descripción de la imagen" class="imagen-bajo-boton">
+
+            <!-- Área de arrastre -->
+            <div class="upload-box" id="drop-area">
+                <div class="icon"></div>
+                <div class="text">Arrastre archivo PNG</div>
+                <button id="reset-btn">Reiniciar</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const dropArea = document.getElementById('drop-area');
+        const resetBtn = document.getElementById('reset-btn');
+        let imgElement;
+
+        // Evitar el comportamiento predeterminado en eventos de arrastre
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Resaltar el área de arrastre cuando la imagen está encima
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.classList.add('dragging'), false);
+        });
+
+        // Quitar el resaltado cuando la imagen se va
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.classList.remove('dragging'), false);
+        });
+
+        // Manejar el evento de soltar el archivo
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            if (files.length > 0 && files[0].type === 'image/png') {
+                const file = files[0];
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    imgElement = document.createElement('img');
+                    imgElement.src = event.target.result;
+
+                    // Reemplazar el contenido de la caja con la imagen
+                    dropArea.innerHTML = '';
+                    dropArea.appendChild(imgElement);
+                    dropArea.appendChild(resetBtn);
+                    resetBtn.style.display = 'block';  // Mostrar el botón de reiniciar
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                alert('Por favor arrastra un archivo PNG.');
+            }
+        }
+
+        // Función para reiniciar el área de arrastre
+        resetBtn.addEventListener('click', () => {
+            // Restaurar el contenido original
+            dropArea.innerHTML = `
+                <div class="icon"></div>
+                <div class="text">Arrastre archivo PNG</div>
+                <button id="reset-btn" style="display: none;">Reiniciar</button>
+            `;
+        });
+    </script>
+</body>
+</html>

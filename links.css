@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #FBFBD7;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+button{
+    font-size: 1.25em;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 2px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    color: white;
+    background-color: #8b6b41;
+    position: relative;
+    right: 520px;
+}
+
+button:hover{
+    background-color: sandybrown;
+}
+
+.upload-box img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.upload-box.dragging {
+    background-color: #e1e7ff;
+    border-color: #333;
+}
+
+#reset-btn {
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color:#8b6b41;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#reset-btn:hover {
+    background-color: sandybrown;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #d1c4a1;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b6b41;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.menu-item {
+    font-size: 14px;
+    color: #8b6b41;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    text-decoration: underline;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.upload-box {
+    width: 600px;
+    height: 350px;
+    border: 2px solid #d1c4a1;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    bottom: 330px;
+}
+
+.imagen-bajo-boton {
+    width: 250px; /* Ajusta el tamaño según lo que necesites */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Asegura que la imagen esté en su propia línea */
+    margin-right: 1050px;
+    margin-top: 20px;
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    background-color: #8b6b41;
+    clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 20% 100%, 0% 40%);
+    margin-bottom: 20px;
+}
+
+.text {
+    font-size: 16px;
+    color: #8b6b41;
+}
