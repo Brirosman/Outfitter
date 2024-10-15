@@ -60,6 +60,7 @@ tags, texts, colors = analyze_image(image_path)
 api_key = 'AIzaSyA64bLOsQ0jjQPAkmHCdL8NwaQZWRIQhDk'
 genai.configure(api_key=api_key)
 
+
 generation_config = {
     "temperature": 1,
     "top_p": 0.95,
@@ -79,12 +80,15 @@ instruccion_gemino = model.start_chat(
         {
             "role": "user",
             "parts": [
-                "A continuación, recibirás un resultado de análisis de una imagen mediante un archivo Python. El análisis puede contener diversas categorías de información, pero tu tarea es devolver solo la búsqueda en Google para encontrar una prenda de ropa basada en la información filtrada.\n\n1. Ropa: Identifica la prenda de vestir o accesorio presente en la imagen. Proporciona una descripción detallada de la prenda o accesorio, incluyendo detalles como el tipo de prenda (camiseta, pantalón, sombrero, etc.), estilo, marca, y cualquier otra característica relevante.\n\n2. Colores: Enumera los colores simples identificados en la prenda, describiendo en qué parte de la prenda se encuentran dichos colores (por ejemplo, \"camiseta roja\", \"sombrero azul\").\n\n3. Texto Extraído: Proporciona el texto que haya sido extraído de la imagen, si es que existe alguno. Mantén el formato y la ortografía originales del texto extraído.\n\nLuego, con base en la información filtrada:\n- Devuelve solo la búsqueda en Google para encontrar dónde comprar esa prenda de ropa identificada. Usa la siguiente estructura para la búsqueda en Google:\n - \"[Descripción completa de la prenda incluyendo tipo, estilo, marca, colores, material y cualquier texto relevante,], comprar online\""
+                "Vas a recibir información sobre una imagen que muestra una prenda de ropa o accesorio. Tu trabajo es hacer una búsqueda en Google para encontrar dónde comprarla, usando una frase simple. Aquí te explico qué hacer:\n\n1. Ropa: Fíjate en qué tipo de prenda aparece en la imagen (camiseta, pantalón, sombrero, etc.) y describe la prenda con detalles.\n\n2. Colores: Observa los colores de la prenda y di cuáles son. Asegúrate de identificar al menos dos colores.\n\n3. Texto Extraído: Si hay palabras en la prenda, escríbelas exactamente como están.\n\nCon esta información, haz una búsqueda en Google usando solo la frase:\n\"comprar [tipo de prenda] [color 1] [color 2] [texto extraído] online\"."
             ],
         },
        
     ]
 )
+
+
+
 
 input_data = f"{tags}\n"
 if texts:
@@ -238,47 +242,4 @@ for result in resultados:
     else:
         print("El resultado no es un diccionario válido.")
        
-#HOW TO SAVE THE EVALUATION
-import csv
-
-with open('evaluacion.csv', 'w', newline='') as file:
-
-    writer = csv.writer(file)
-    writer.writerow(["Enlace", "Precisión", "Relevancia", "Popularidad", "Notas Finales"])
-
-    for result in resultados:
-        if isinstance(result, dict):
-            titulo = result.get('title', 'Título no disponible')
-            enlace = result.get('link', 'Enlace no disponible')
-            snippet = result.get('snippet', 'Descripción no disponible')
-
-            input_data_analyzer = f"""
-            El enlace proporcionado es: {enlace}.
-            Título del enlace: {titulo}.
-            Descripción del enlace: {snippet}.
-            Texto extraído: {' '.join(texts)}.
-            Colores identificados en la prenda:
-            """
-            for color_name, color_parent in colors:
-                input_data_analyzer += f"- Color: {color_name}, Parent Color: {color_parent}\n"
-
-            response_analyzer = analyzer_chat.send_message(input_data_analyzer)
-
-            try:
-                response_analyzer = analyzer_chat.send_message(input_data_analyzer)
-            except google.api_core.exceptions.DeadlineExceeded:
-                print("Flaco tardas mucho")
-            except google.api_core.exceptions.GoogleAPICallError as e:
-                print(f"Error en de la API de Google: {e}")
-
-                evaluacion = response_analyzer.candidates[0].content
-                print(f"Evaluación del enlace: {enlace}\n{evaluacion}\n{'-' * 50}")
-            else:
-                print("El resultado no es un diccionario válido.")
-
-            writer.writerow([enlace, evaluacion])
-        else:
-            print("El resultado no es un diccionario válido.")
-            writer.writerow([result])
-
-
+   
