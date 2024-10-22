@@ -80,10 +80,27 @@
                 };
 
                 reader.readAsDataURL(file);
+                sendImage(file);
             } else {
                 alert('Por favor arrastra un archivo PNG.');
             }
         }
+        function sendImage(file) {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    fetch('http://localhost:8000/upload', { 
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
 
         // Función para reiniciar el área de arrastre
         resetBtn.addEventListener('click', () => {
