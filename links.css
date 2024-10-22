@@ -105,6 +105,29 @@ main {
     bottom: 330px;
 }
 
+.Area-links{
+    width: 600px;
+    height: 100px;
+    background-color: #fff;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d1c4a1;
+    position: relative;
+    bottom: 260px;
+}
+
+.links{
+    position: relative;
+    bottom: 280px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b6b41;
+}
+
 .imagen-bajo-boton {
     width: 250px; /* Ajusta el tamaño según lo que necesites */
     height: auto; /* Mantiene la proporción de la imagen */
