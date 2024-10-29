@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outfitter</title>
-    <link rel="stylesheet" href="links.css">
+    <link rel="stylesheet" href="/static/links.css">
   
 </head>
 <body>
@@ -17,13 +17,13 @@
             </div>
         </header>
         <main>
-            <a href="index.html"><button>VOLVER</button></a>
+            <a href="/"><button>VOLVER</button></a>
             <img src="media/Union.png" alt="Descripción de la imagen" class="imagen-bajo-boton">
 
             <!-- Área de arrastre -->
             <div class="upload-box" id="drop-area">
                 <div class="icon"></div>
-                <div class="text">Arrastre archivo PNG</div>
+                <div class="text">Arrastre archivo PNG o JPG</div>
                 <button id="reset-btn">Reiniciar</button>
             </div>
 
@@ -64,7 +64,7 @@
             const dt = e.dataTransfer;
             const files = dt.files;
 
-            if (files.length > 0 && files[0].type === 'image/png') {
+            if (files.length > 0 && (files[0].type === 'image/png' || files[0].type === 'image/jpeg')) {
                 const file = files[0];
                 const reader = new FileReader();
 

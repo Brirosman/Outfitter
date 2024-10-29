@@ -9,8 +9,6 @@ api_secret = '2a604eae7c4db9e8868f22ba49960559'
 image_path = 'C:/Users/48793373/Documents/Outfitter/IA/Fotos/river.jpg'
 
 
-
-
 def analyze_image(image_path):
     tags, extracted_texts, color_info = [], [], []
 
