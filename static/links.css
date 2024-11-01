@@ -102,7 +102,8 @@ main {
     background-color: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    bottom: 330px;
+    bottom: initial;
+    margin-top: 50px;
 }
 
 .Area-links{
@@ -117,21 +118,23 @@ main {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border: 2px solid #d1c4a1;
     position: relative;
-    bottom: 260px;
+    bottom: initial;
+    margin-top: 50px;
 }
 
 .links{
     position: relative;
-    bottom: 280px;
+
     font-size: 24px;
     font-weight: bold;
     color: #8b6b41;
+    margin-top: 50px;
 }
 
 .imagen-bajo-boton {
-    width: 250px; /* Ajusta el tamaño según lo que necesites */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Asegura que la imagen esté en su propia línea */
+    width: 250px; 
+    height: auto; 
+    display: block; 
     margin-right: 1050px;
     margin-top: 20px;
 }

@@ -1,12 +1,41 @@
 import requests
 import google.generativeai as genai
 import urllib3
+from fastapi import FastAPI, Request, UploadFile, File
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from PIL import Image
+import io
+
+
+app = FastAPI()
+
+image_path = ''
+
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+templates = Jinja2Templates(directory="templates")
+
+
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/links.html", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("links.html", {"request": request})
+
+
+
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 api_key = 'acc_3798ba95def9b0d'
 api_secret = '2a604eae7c4db9e8868f22ba49960559'
-image_path = 'C:/Users/48793373/Documents/Outfitter/IA/Fotos/river.jpg'
+
 
 
 def analyze_image(image_path):

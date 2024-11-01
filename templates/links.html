@@ -37,7 +37,6 @@
         const resetBtn = document.getElementById('reset-btn');
         let imgElement;
 
-        // Evitar el comportamiento predeterminado en eventos de arrastre
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropArea.addEventListener(eventName, preventDefaults, false);
         });
@@ -47,17 +46,14 @@
             e.stopPropagation();
         }
 
-        // Resaltar el área de arrastre cuando la imagen está encima
         ['dragenter', 'dragover'].forEach(eventName => {
             dropArea.addEventListener(eventName, () => dropArea.classList.add('dragging'), false);
         });
 
-        // Quitar el resaltado cuando la imagen se va
         ['dragleave', 'drop'].forEach(eventName => {
             dropArea.addEventListener(eventName, () => dropArea.classList.remove('dragging'), false);
         });
 
-        // Manejar el evento de soltar el archivo
         dropArea.addEventListener('drop', handleDrop, false);
 
         function handleDrop(e) {
@@ -72,11 +68,10 @@
                     imgElement = document.createElement('img');
                     imgElement.src = event.target.result;
 
-                    // Reemplazar el contenido de la caja con la imagen
                     dropArea.innerHTML = '';
                     dropArea.appendChild(imgElement);
                     dropArea.appendChild(resetBtn);
-                    resetBtn.style.display = 'block';  // Mostrar el botón de reiniciar
+                    resetBtn.style.display = 'block'; 
                 };
 
                 reader.readAsDataURL(file);
@@ -89,7 +84,7 @@
     const formData = new FormData();
     formData.append('image', file);
 
-    fetch('http://localhost:8000/upload', { 
+    fetch(' http://127.0.0.1:8000/links.html', { 
         method: 'POST',
         body: formData
     })
@@ -102,9 +97,7 @@
     });
 }
 
-        // Función para reiniciar el área de arrastre
         resetBtn.addEventListener('click', () => {
-            // Restaurar el contenido original
             dropArea.innerHTML = `
                 <div class="icon"></div>
                 <div class="text">Arrastre archivo PNG</div>
@@ -112,5 +105,31 @@
             `;
         });
     </script>
+<button class="boton-analizar" onclick="analizar()">Analizar</button>
+
+<script>
+function analizar() {
+    alert("Función analizar ejecutada.");
+}
+</script>
+<style>
+    .btn-analizar {
+        font-size: 1.25em;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 2px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    color: white;
+    background-color: #8b6b41;
+    position: relative;
+    left: 300px;
+     
+    
+    
+    }
+    </style>    
+
+
 </body>
 </html>
