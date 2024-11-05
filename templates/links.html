@@ -21,11 +21,11 @@
             
             <div class="upload-box" id="drop-area">
                 <div class="icon"></div>
-                <div class="text">Arrastre archivo PNG o JPG</div>
+                <div class="text">Seleccione la prenda de ropa</div>
                 <button id="reset-btn" style="display: none;">Reiniciar</button>
                 <input type="file" id="fileElem" accept="image/png, image/jpeg" style="display: none;">
             </div>
-
+            
             <div class="links">RESULTADOS</div>
             <div class="Area-links"></div>
         </main>
@@ -117,18 +117,18 @@
                 <button id="reset-btn" style="display: none;">Reiniciar</button>
             `;
         });
-    </script>
-
-    <button class="boton-analizar" onclick="analizar()">Analizar</button>
-
-    <script>
-        function analizar() {
-            alert("Función analizar ejecutada.");
+        async function analizar() {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/analizar");
+                const data = await response.json();
+                alert("Respuesta del servidor: " + data.output);
+            } catch (error) {
+                console.error("Error al llamar al script:", error);
+            }
         }
     </script>
-
     <style>
-        .btn-analizar {
+        .boton-analizar {
             font-size: 1.25em;
             font-weight: bold;
             padding: 10px 30px;
@@ -140,6 +140,8 @@
             position: relative;
             left: 300px;
         }
-    </style>    
+    </style>
+</head>
+    <button class="boton-analizar" onclick="analizar()">Analizar</button>
 </body>
 </html>

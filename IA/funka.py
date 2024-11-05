@@ -1,4 +1,3 @@
-import requests
 import google.generativeai as genai
 import urllib3
 from fastapi import FastAPI, Request, UploadFile, File
@@ -11,22 +10,7 @@ import io
 
 app = FastAPI()
 
-image_path = ''
-
-
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-templates = Jinja2Templates(directory="templates")
-
-
-@app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-@app.get("/links.html", response_class=HTMLResponse)
-async def home(request: Request):
-    return templates.TemplateResponse("links.html", {"request": request})
-
+image_path = 'C:/Users/48793373/Documents/api2/Fotos/river.jpg'
 
 
 
