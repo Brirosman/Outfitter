@@ -21,6 +21,8 @@ button{
     background-color: #8b6b41;
     position: relative;
     left: 510px;
+    transition: 0.2s;
+    cursor: pointer;
 }
 
 button:hover{
