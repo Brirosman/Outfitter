@@ -20,7 +20,7 @@ button{
     color: white;
     background-color: #8b6b41;
     position: relative;
-    left: 510px;
+    left: 550px;
     transition: 0.2s;
     cursor: pointer;
 }
@@ -104,8 +104,8 @@ main {
     background-color: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    bottom: initial;
-    margin-top: 50px;
+    bottom: 320px;
+   
 }
 
 .Area-links{
@@ -120,25 +120,24 @@ main {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border: 2px solid #d1c4a1;
     position: relative;
-    bottom: initial;
-    margin-top: 50px;
+    bottom: 300px;
 }
 
 .links{
     position: relative;
-
     font-size: 24px;
     font-weight: bold;
     color: #8b6b41;
-    margin-top: 50px;
+    position: relative;
+    bottom: 300px;
 }
 
 .imagen-bajo-boton {
     width: 250px; 
     height: auto; 
     display: block; 
-    margin-right: 1050px;
-    margin-top: 20px;
+   position: relative;
+   right: 550px;
 }
 
 .icon {
