@@ -29,11 +29,13 @@ button{
     background-color: #8b6b41;
     transition: 0.2s;
     cursor: pointer;
+    transition: transform 0.2s;
 }
 
 
 button:hover{
     background-color: sandybrown;
+    transform: scale(1.1);
 }
 
 .container{
@@ -126,7 +128,7 @@ header a:hover{
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("/media/mierdacer.png");
+    ,url("/media/hermoser.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
