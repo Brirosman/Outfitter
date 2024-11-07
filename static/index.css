@@ -126,7 +126,7 @@ header a:hover{
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("media/mierdacer.png");
+    ,url("/media/mierdacer.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -182,7 +182,7 @@ header a:hover{
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("media/front-end.jpg");
+    ,url("/media/front-end.jpg");
 
 }
 
@@ -192,7 +192,7 @@ header a:hover{
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("media/full-stack.jpg");
+    ,url("/media/full-stack.jpg");
 }
 
 
@@ -289,7 +289,7 @@ footer .container{
 
     
     #somos-proya .img-container{
-        background-image: url("media/Logo1.png");
+        background-image: url("/media/Logo1.png");
         background-size: contain;
         background-position: center center;
         height: 350px;
@@ -331,7 +331,7 @@ footer .container{
             rgba(0,0,0,0.5),
             rgba(0,0,0,0.5)
         )
-        ,url("media/front-end-cropped.jpg");
+        ,url("/media/front-end-cropped.jpg");
         
     }
 
@@ -341,14 +341,14 @@ footer .container{
             rgba(0,0,0,0.5),
             rgba(0,0,0,0.5)
         )
-        ,url("media/full-stack-cropped.jpg");
+        ,url("/media/full-stack-cropped.jpg");
     }
 
   
 
 
     #caracteristicas{
-        background-image: url("media/caracteristicas.jpg");
+        background-image: url("/media/caracteristicas.jpg");
         background-repeat: no-repeat;
         background-size: 600px 300px;
         background-position: calc(200vw - 400px) 180px;
