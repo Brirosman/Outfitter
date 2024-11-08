@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="media/png" href="/media/Logo1.png"> 
     <title>Outfitter</title>
     <link rel="stylesheet" href="/static/links.css">
 </head>
@@ -16,14 +17,15 @@
             </div>
         </header>
         <main>
-            <a href="/"><button>VOLVER</button></a>
-            <img src="media/Union.png" alt="Descripción de la imagen" class="imagen-bajo-boton">
+            <a href="index.html"><button>VOLVER</button></a>
+            <img src="/media/Union.png" alt="Descripción de la imagen" class="imagen-bajo-boton">
             
             <div class="upload-box" id="drop-area">
                 <div class="icon"></div>
                 <div class="text">Seleccione la prenda de ropa</div>
                 <button id="reset-btn" style="display: none;">Reiniciar</button>
                 <input type="file" id="fileElem" accept="image/png, image/jpeg" style="display: none;">
+                <button class="boton-analizar" onclick="analizar()">Analizar</button>
             </div>
             
             <div class="links">RESULTADOS</div>
@@ -127,21 +129,7 @@
             }
         }
     </script>
-    <style>
-        .boton-analizar {
-            font-size: 1.25em;
-            font-weight: bold;
-            padding: 10px 30px;
-            border-radius: 5px;
-            border: 2px solid rgba(0,0,0,0.3);
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            color: white;
-            background-color: #8b6b41;
-            position: relative;
-            left: 300px;
-        }
-    </style>
 </head>
-    <button class="boton-analizar" onclick="analizar()">Analizar</button>
+    
 </body>
 </html>

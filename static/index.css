@@ -27,11 +27,15 @@ button{
     box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     color: white;
     background-color: #8b6b41;
+    transition: 0.2s;
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
 
 button:hover{
     background-color: sandybrown;
+    transform: scale(1.1);
 }
 
 .container{
@@ -109,7 +113,7 @@ header a:hover{
     left: 560px;
     height: 25%;
     width: 48%;
-    background-color: #A58F69; /* Color del rectángulo */
+    background-color: #A58F69; 
 }
 
 #hero{
@@ -124,7 +128,7 @@ header a:hover{
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("media/mierdacer.png");
+    ,url("/media/hermoser.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -180,7 +184,7 @@ header a:hover{
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("media/front-end.jpg");
+    ,url("/media/front-end.jpg");
 
 }
 
@@ -190,7 +194,7 @@ header a:hover{
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("media/full-stack.jpg");
+    ,url("/media/full-stack.jpg");
 }
 
 
@@ -287,7 +291,7 @@ footer .container{
 
     
     #somos-proya .img-container{
-        background-image: url("media/Logo1.png");
+        background-image: url("/media/Logo1.png");
         background-size: contain;
         background-position: center center;
         height: 350px;
@@ -329,7 +333,7 @@ footer .container{
             rgba(0,0,0,0.5),
             rgba(0,0,0,0.5)
         )
-        ,url("media/front-end-cropped.jpg");
+        ,url("/media/front-end-cropped.jpg");
         
     }
 
@@ -339,14 +343,14 @@ footer .container{
             rgba(0,0,0,0.5),
             rgba(0,0,0,0.5)
         )
-        ,url("media/full-stack-cropped.jpg");
+        ,url("/media/full-stack-cropped.jpg");
     }
 
   
 
 
     #caracteristicas{
-        background-image: url("media/caracteristicas.jpg");
+        background-image: url("/media/caracteristicas.jpg");
         background-repeat: no-repeat;
         background-size: 600px 300px;
         background-position: calc(200vw - 400px) 180px;
