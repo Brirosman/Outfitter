@@ -35,10 +35,9 @@ button{
     border: 2px solid rgba(0,0,0,0.3);
     box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     color: white;
-    background-color: #8b6b41;
+    background-color: #8b6b41; 
     position: relative;
-    left: 520px;
-    bottom: 300px;
+    bottom: 100px;
 }
 
 button:hover{
@@ -65,7 +64,6 @@ button:hover{
     cursor: pointer;
     border-radius: 5px;
     position: relative;
-    right: 200px;
 }
 
 #reset-btn:hover {

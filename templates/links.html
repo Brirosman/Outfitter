@@ -25,6 +25,7 @@
                 <div class="text">Seleccione la prenda de ropa</div>
                 <button id="reset-btn" style="display: none;">Reiniciar</button>
                 <input type="file" id="fileElem" accept="image/png, image/jpeg" style="display: none;">
+                <button class="boton-analizar" onclick="analizar()">Analizar</button>
             </div>
             
             <div class="links">RESULTADOS</div>
@@ -128,21 +129,7 @@
             }
         }
     </script>
-    <style>
-        .boton-analizar {
-            font-size: 1.25em;
-            font-weight: bold;
-            border-radius: 5px;
-            border: 2px solid rgba(0,0,0,0.3);
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            color: white;
-            background-color: #8b6b41;
-            position: relative;
-            left: 600px;
-            bottom: 300px;
-        }
-    </style>
 </head>
-    <button class="boton-analizar" onclick="analizar()">Analizar</button>
+    
 </body>
 </html>
