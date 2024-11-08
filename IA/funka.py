@@ -1,16 +1,8 @@
 import google.generativeai as genai
 import urllib3
-from fastapi import FastAPI, Request, UploadFile, File
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from PIL import Image
-import io
+import requests
 
 
-app = FastAPI()
-
-image_path = 'C:/Users/48793373/Documents/api2/Fotos/river.jpg'
 
 
 
@@ -19,6 +11,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 api_key = 'acc_3798ba95def9b0d'
 api_secret = '2a604eae7c4db9e8868f22ba49960559'
+
+image_path = 'C:/Users/48793373/Documents/api2/Fotos/river.jpg'
 
 
 
@@ -158,99 +152,99 @@ for result in resultados:
   print(result['snippet']) 
   print('-' * 50)
 
-input_analyzer = [(result['link'], result['title'], result['snippet']) for result in resultados]
+# input_analyzer = [(result['link'], result['title'], result['snippet']) for result in resultados]
 
 
 # THE ANALYZER 
 
-import requests
-import os
-import google.generativeai as genai
+# import requests
+# import os
+# import google.generativeai as genai
 
-api_key2 = 'AIzaSyBFJdYALbfs0cHffT-tE-gYB_k4N0idGOQ'
-genai.configure(api_key=api_key2)
+# api_key2 = 'AIzaSyBFJdYALbfs0cHffT-tE-gYB_k4N0idGOQ'
+# genai.configure(api_key=api_key2)
 
-generation_config_analyzer = {
-    "temperature": 1,
-    "top_p": 0.95,
-    "top_k": 64,
-    "max_output_tokens": 8192,
-    "response_mime_type": "text/plain",
-}
+# generation_config_analyzer = {
+#     "temperature": 1,
+#     "top_p": 0.95,
+#     "top_k": 64,
+#     "max_output_tokens": 8192,
+#     "response_mime_type": "text/plain",
+# }
 
-model_analyzer = genai.GenerativeModel(
-    model_name="gemini-1.5-pro",
-    generation_config=generation_config_analyzer,
-    system_instruction="""
-    Task introduction:
-    Tu tarea es evaluar la relevancia y precisión de los resultados de búsqueda de ropa basada en una imagen. Se te dará enlaces generados por una búsqueda en Google, y debes calificarlo de acuerdo con criterios como la calidad de la descripción de la prenda y si es relevante para la ropa identificada.
+# model_analyzer = genai.GenerativeModel(
+#     model_name="gemini-1.5-pro",
+#     generation_config=generation_config_analyzer,
+#     system_instruction="""
+#     Task introduction:
+#     Tu tarea es evaluar la relevancia y precisión de los resultados de búsqueda de ropa basada en una imagen. Se te dará enlaces generados por una búsqueda en Google, y debes calificarlo de acuerdo con criterios como la calidad de la descripción de la prenda y si es relevante para la ropa identificada.
 
-    Evaluation criteria:
-    Evalúa los siguientes enlaces obtenidos de una búsqueda en Google para la prenda.
-    - Precisión: ¿El enlace lleva a una tienda o página donde realmente se puede comprar la prenda detectada?
-    - Relevancia: ¿El enlace está relacionado directamente con la prenda?
-    - Popularidad: ¿El enlace lleva a un sitio confiable o conocido?
+#     Evaluation criteria:
+#     Evalúa los siguientes enlaces obtenidos de una búsqueda en Google para la prenda.
+#     - Precisión: ¿El enlace lleva a una tienda o página donde realmente se puede comprar la prenda detectada?
+#     - Relevancia: ¿El enlace está relacionado directamente con la prenda?
+#     - Popularidad: ¿El enlace lleva a un sitio confiable o conocido?
 
-    Proporciona un puntaje de 0 al 1 para cada criterio y una breve explicación.
+#     Proporciona un puntaje de 0 al 1 para cada criterio y una breve explicación.
 
-    Evaluation steps:
-    Tu tarea es evaluar la relevancia y precisión de los resultados de búsqueda de ropa basada en una imagen. A continuación, se te proporcionarán enlaces obtenidos de una búsqueda en Google, y deberás evaluarlos según los siguientes criterios:
+#     Evaluation steps:
+#     Tu tarea es evaluar la relevancia y precisión de los resultados de búsqueda de ropa basada en una imagen. A continuación, se te proporcionarán enlaces obtenidos de una búsqueda en Google, y deberás evaluarlos según los siguientes criterios:
 
-   Criterios de Evaluación:
-   Precisión:
+#    Criterios de Evaluación:
+#    Precisión:
 
-    ¿El enlace lleva a una tienda o página donde realmente se puede comprar la prenda identificada en la imagen?
- Puntaje: 0 (no es posible comprar la prenda) a 1 (la prenda exacta está disponible para la compra).
- Relevancia:
+#     ¿El enlace lleva a una tienda o página donde realmente se puede comprar la prenda identificada en la imagen?
+#  Puntaje: 0 (no es posible comprar la prenda) a 1 (la prenda exacta está disponible para la compra).
+#  Relevancia:
 
- ¿El enlace está directamente relacionado con la prenda identificada?
- Puntaje: 0 (el enlace es irrelevante o muestra productos diferentes) a 1 (el enlace muestra exactamente la prenda o productos altamente relacionados).
- Popularidad:
+#  ¿El enlace está directamente relacionado con la prenda identificada?
+#  Puntaje: 0 (el enlace es irrelevante o muestra productos diferentes) a 1 (el enlace muestra exactamente la prenda o productos altamente relacionados).
+#  Popularidad:
 
- ¿El enlace lleva a un sitio web confiable o conocido?
- Puntaje: 0 (el sitio parece poco confiable o sospechoso) a 1 (el sitio es popular y confiable, como Amazon, Zara, etc.).
+#  ¿El enlace lleva a un sitio web confiable o conocido?
+#  Puntaje: 0 (el sitio parece poco confiable o sospechoso) a 1 (el sitio es popular y confiable, como Amazon, Zara, etc.).
 
-  Formato de Evaluación:
- Para cada enlace, proporciona una puntuación de 0 a 1 en cada uno de los tres criterios y acompáñala con una breve explicación justificando tu decisión.
+#   Formato de Evaluación:
+#  Para cada enlace, proporciona una puntuación de 0 a 1 en cada uno de los tres criterios y acompáñala con una breve explicación justificando tu decisión.
 
- Ejemplo de Evaluación:
+#  Ejemplo de Evaluación:
 
- Enlace 1: [URL]
+#  Enlace 1: [URL]
 
- Precisión: 0.8 - La prenda es similar a la de la imagen, pero con pequeñas diferencias en el diseño.
- Relevancia: 1 - El enlace está directamente relacionado con la prenda buscada.
- Popularidad: 1 - El sitio web es ampliamente conocido y confiable.
- Notas Finales:
- Después de evaluar todos los enlaces, promedia los puntajes de los tres criterios para cada enlace.
- Proporciona un resumen final sobre la calidad general de los resultados de la búsqueda.
- """
-)
+#  Precisión: 0.8 - La prenda es similar a la de la imagen, pero con pequeñas diferencias en el diseño.
+#  Relevancia: 1 - El enlace está directamente relacionado con la prenda buscada.
+#  Popularidad: 1 - El sitio web es ampliamente conocido y confiable.
+#  Notas Finales:
+#  Después de evaluar todos los enlaces, promedia los puntajes de los tres criterios para cada enlace.
+#  Proporciona un resumen final sobre la calidad general de los resultados de la búsqueda.
+#  """
+# )
 
-analyzer_chat = model_analyzer.start_chat()
-for result in resultados:
-    if isinstance(result, dict):
-        titulo = result.get('title', 'Título no disponible')
-        enlace = result.get('link', 'Enlace no disponible')
-        snippet = result.get('snippet', 'Descripción no disponible')
+# analyzer_chat = model_analyzer.start_chat()
+# for result in resultados:
+#     if isinstance(result, dict):
+#         titulo = result.get('title', 'Título no disponible')
+#         enlace = result.get('link', 'Enlace no disponible')
+#         snippet = result.get('snippet', 'Descripción no disponible')
 
-        input_data_analyzer = f"""
-        El enlace proporcionado es: {enlace}.
-        Título del enlace: {titulo}.
-        Descripción del enlace: {snippet}.
-        Texto extraído: {' '.join(texts)}.
-        Colores identificados en la prenda:
-        """
-        for color_name, color_parent in colors:
-            input_data_analyzer += f"- Color: {color_name}, Parent Color: {color_parent}\n"
+#         input_data_analyzer = f"""
+#         El enlace proporcionado es: {enlace}.
+#         Título del enlace: {titulo}.
+#         Descripción del enlace: {snippet}.
+#         Texto extraído: {' '.join(texts)}.
+#         Colores identificados en la prenda:
+#         """
+#         for color_name, color_parent in colors:
+#             input_data_analyzer += f"- Color: {color_name}, Parent Color: {color_parent}\n"
 
     
 
-        response_analyzer = analyzer_chat.send_message(input_data_analyzer)
+#         response_analyzer = analyzer_chat.send_message(input_data_analyzer)
    
 
-        evaluacion = response_analyzer.candidates[0].content
-        print(f"Evaluación del enlace: {enlace}\n{evaluacion}\n{'-' * 50}")
-    else:
-        print("El resultado no es un diccionario válido.")
+#         evaluacion = response_analyzer.candidates[0].content
+#     #     print(f"Evaluación del enlace: {enlace}\n{evaluacion}\n{'-' * 50}")
+#     # else:
+#         # print("El resultado no es un diccionario válido.")
        
    

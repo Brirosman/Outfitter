@@ -6,7 +6,6 @@ from PIL import Image
 import io
 import subprocess 
 from fastapi.responses import JSONResponse
-from funka import analyze_image
 
 
 
@@ -25,10 +24,10 @@ async def home(request: Request):
 async def home(request: Request):
     return templates.TemplateResponse("links.html", {"request": request})
 
-@app.post("/analizar/")
-async def analyze_image (file: UploadFile = File(...)):
-    contents = await file.read()
-    with open("funka.py", "wb") as f:
-        f.write(contents)
-    result = subprocess.run(["python3", "funka.py"], capture_output=True, text=True)
-    return JSONResponse(content={"output": result.stdout})
+# @app.post("/analizar/")
+# async def analyze_image (file: UploadFile = File(...)):
+#     contents = await file.read()
+#     with open("funka.py", "wb") as f:
+#         f.write(contents)
+#     result = subprocess.run(["python3", "funka.py"], capture_output=True, text=True)
+#     return JSONResponse(content={"output": result.stdout})
