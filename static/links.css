@@ -20,11 +20,25 @@ button{
     color: white;
     background-color: #8b6b41;
     position: relative;
-    left: 550px;
+    left: 500px;
+    top: 50px;
     transition: 0.2s;
     cursor: pointer;
     transition: transform 0.2s;
-    
+}
+
+.boton-analizar {
+    font-size: 1.25em;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 2px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    color: white;
+    background-color: #8b6b41;
+    position: relative;
+    left: 520px;
+    bottom: 300px;
 }
 
 button:hover{
@@ -44,15 +58,14 @@ button:hover{
 
 #reset-btn {
     display: none;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
     background-color:#8b6b41;
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+    position: relative;
+    right: 200px;
 }
 
 #reset-btn:hover {
@@ -92,7 +105,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .upload-box {
@@ -107,7 +120,7 @@ main {
     background-color: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    bottom: 320px;
+    bottom: 335px;
     cursor: pointer;
 }
 
@@ -123,24 +136,25 @@ main {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border: 2px solid #d1c4a1;
     position: relative;
-    bottom: 300px;
+    bottom: 330px;
 }
 
 .links{
     position: relative;
+    bottom: 330px;
     font-size: 24px;
     font-weight: bold;
     color: #8b6b41;
-    position: relative;
-    bottom: 300px;
+   
 }
 
 .imagen-bajo-boton {
     width: 250px; 
     height: auto; 
-    display: block; 
-   position: relative;
-   right: 550px;
+    display: flex; 
+    position: relative;
+    right: 480px;
+    
 }
 
 .icon {
