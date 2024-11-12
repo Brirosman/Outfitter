@@ -9,11 +9,12 @@ app = FastAPI()
 
 @app.get("/")
 async def read_root():
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     api_key = 'acc_3798ba95def9b0d'
     api_secret = '2a604eae7c4db9e8868f22ba49960559'
-    image_path = '/C:/Users/48793373/Documents/Outfitter/IA/Fotos/oa.jpg'
+
+    image_path = 'C:/Users/48793373/Documents/Outfitter/IA/Fotos/river.jpg'
 
     def analyze_image(image_path):
         tags, extracted_texts, color_info = [], [], []
@@ -37,8 +38,10 @@ async def read_root():
             )
         text_data = response.json()
                     
+
         if 'result' in text_data and 'text' in text_data['result']:
             extracted_texts = [item['data'] for item in text_data['result']['text']]
+            
 
         with open(image_path, 'rb') as image_file:
             response = requests.post(
@@ -62,6 +65,7 @@ async def read_root():
     api_key = 'AIzaSyA64bLOsQ0jjQPAkmHCdL8NwaQZWRIQhDk'
     genai.configure(api_key=api_key)
 
+
     generation_config = {
         "temperature": 1,
         "top_p": 0.95,
@@ -73,6 +77,7 @@ async def read_root():
     model = genai.GenerativeModel(
         model_name="gemini-1.5-flash",
         generation_config=generation_config,
+
     )
 
     instruccion_gemino = model.start_chat(
@@ -83,8 +88,12 @@ async def read_root():
                     "Vas a recibir información sobre una imagen que muestra una prenda de ropa o accesorio. Tu trabajo es hacer una búsqueda en Google para encontrar dónde comprarla, usando una frase simple. Aquí te explico qué hacer:\n\n1. Ropa: Fíjate en qué tipo de prenda aparece en la imagen (camiseta, pantalón, sombrero, etc.) y describe la prenda con detalles.\n\n2. Colores: Observa los colores de la prenda y di cuáles son. Asegúrate de identificar al menos dos colores.\n\n3. Texto Extraído: Si hay palabras en la prenda, escríbelas exactamente como están.\n\nCon esta información, haz una búsqueda en Google usando solo la frase:\n\"comprar [tipo de prenda] [color 1] [color 2] [texto extraído] online\"."
                 ],
             },
+        
         ]
     )
+
+
+
 
     input_data = f"{tags}\n"
     if texts:
@@ -98,6 +107,20 @@ async def read_root():
     content = candidates[0].content
     parts = content.parts
     text = parts[0].text
+    text = text.strip('"')
+    print(text)
+
+
+
+
+
+
+
+
+    #Serp API
+    import requests
+    import urllib3 
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     query = text
 
@@ -107,15 +130,16 @@ async def read_root():
             "engine": "google",
             "q": query,
             "api_key": "17791f133d05bd9e5629260faf196e641e395e087849f32e0361e416956ddb27",
-            "safe": "active",
-            "hl": "es",
+            "safe":"active",
+            "hl":"es",
             "gl": "ar",
             "location": "Argentina",
+
         }
 
         try:
             response = requests.get(url, params=params, verify=False)
-            response.raise_for_status()
+            response.raise_for_status()  
         except requests.exceptions.RequestException as e:
             return f"Error 9/12 {e}"
 
@@ -123,5 +147,13 @@ async def read_root():
 
     resultados = google_search(text)
 
+    for result in resultados:
+        print(result['title'])
+        print(result['link'])
+        print(result['snippet']) 
+        print('-' * 50)
+
+
     links = [result['link'] for result in resultados]
     return {"Msg": links}
+
