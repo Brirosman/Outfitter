@@ -5,6 +5,7 @@ import google.generativeai as genai
 import urllib3
 import requests
 
+
 app = FastAPI()
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -119,9 +120,7 @@ async def read_root():
 
 
     #Serp API
-    import requests
-    import urllib3 
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    
 
     query = text
 
