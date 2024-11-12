@@ -7,10 +7,12 @@ import requests
 
 app = FastAPI()
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
 @app.get("/")
 async def read_root():
 
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     api_key = 'acc_3798ba95def9b0d'
     api_secret = '2a604eae7c4db9e8868f22ba49960559'
 
