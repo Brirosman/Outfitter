@@ -121,11 +121,11 @@
         });
         async function analizar() {
             try {
-                const response = await fetch("http://127.0.0.1:8000/analizar");
-                const data = await response.json();
-                alert("Respuesta del servidor: " + data.output);
+                const response = await axios.get("http://outfitter.onrender.com");
+                alert("Respuesta del servidor: " + JSON.stringify(response.data));
             } catch (error) {
-                console.error("Error al llamar al script:", error);
+                console.error("Error al llamar al servidor:", error);
+                alert("Error al llamar al servidor.");
             }
         }
 
