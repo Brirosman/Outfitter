@@ -9,6 +9,7 @@ html{
 body{
     font-family: 'Roboto', sans-serif;
     margin: 0;
+    overflow-x: hidden;
 }
 
 h1{ font-size: 3.5em;}
@@ -41,6 +42,7 @@ button:hover{
 .container{
     max-width: 1400px;
     margin: auto;
+    
 }
 
 .color-acento{ color: black }
