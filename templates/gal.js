@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const render = 'quintoproyecto.onrender.com'; 
+const render = 'outfitter.onrender.com'; 
 
 axios.get(`http://${render}`)
   .then(response => {
