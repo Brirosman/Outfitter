@@ -10,8 +10,17 @@ app = FastAPI()
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get("/")
+@app.get("/links.html", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("links.html", {"request": request})
+
+
+
+@app.get("/analizar")
 async def read_root():
 
     api_key = 'acc_3798ba95def9b0d'
