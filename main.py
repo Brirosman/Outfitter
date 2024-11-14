@@ -51,8 +51,11 @@ async def read_root():
             for color in dominant_colors
         ]
 
+
+        return nombre_posta, extracted_texts, colores_prenda
+
+
     print("algo cambio dentro de lotso")  
-    return nombre_posta, extracted_texts, colores_prenda
     tags, texts, colors = analyze_image(image_path)
     print("boop")  
     api_key = 'AIzaSyA64bLOsQ0jjQPAkmHCdL8NwaQZWRIQhDk'
