@@ -21,41 +21,40 @@ async def read_root():
     print("peli 1")  
     def analyze_image(image_url):
         tags, extracted_texts, color_info = [], [], []
+        response = requests.get(
+            'https://api.imagga.com/v2/tags?image_url=%s' % image_url,
+            auth=(api_key, api_secret),
+            verify=False
+        )
         
-    response = requests.get(
-        'https://api.imagga.com/v2/tags?image_url=%s' % image_url,
-        auth=(api_key, api_secret),
-        verify=False
-    )
-    tags = response.json()
-    nombre_posta = [tag['tag']['en'] for tag in tags['result']['tags'] if tag['confidence'] > 15]
+        tags = response.json()
+        nombre_posta = [tag['tag']['en'] for tag in tags['result']['tags'] if tag['confidence'] > 15]
 
-    response = requests.get(
-        'https://api.imagga.com/v2/text?image_url=%s' % image_url,
-        auth=(api_key, api_secret),
-        verify=False
-    )
-    text_data = response.json()
-    if 'result' in text_data and 'text' in text_data['result']:
-        extracted_texts = [item['data'] for item in text_data['result']['text']]
+        response = requests.get(
+            'https://api.imagga.com/v2/text?image_url=%s' % image_url,
+            auth=(api_key, api_secret),
+            verify=False
+        )
+        text_data = response.json()
+        if 'result' in text_data and 'text' in text_data['result']:
+            extracted_texts = [item['data'] for item in text_data['result']['text']]
 
-    response = requests.get(
-        'https://api.imagga.com/v2/colors?image_url=%s' % image_url,
-        auth=(api_key, api_secret),
-        verify=False
-    )
-    colors = response.json()
-    dominant_colors = colors.get('result', {}).get('colors', {}).get('image_colors', [])
-    colores_prenda = [
-        (color.get('closest_palette_color'), color.get('closest_palette_color_parent'))
-        for color in dominant_colors
-    ]
+        response = requests.get(
+            'https://api.imagga.com/v2/colors?image_url=%s' % image_url,
+            auth=(api_key, api_secret),
+            verify=False
+        )
+        colors = response.json()
+        dominant_colors = colors.get('result', {}).get('colors', {}).get('image_colors', [])
+        colores_prenda = [
+            (color.get('closest_palette_color'), color.get('closest_palette_color_parent'))
+            for color in dominant_colors
+        ]
 
     print("algo cambio dentro de lotso")  
     return nombre_posta, extracted_texts, colores_prenda
-
     tags, texts, colors = analyze_image(image_path)
-
+    print("boop")  
     api_key = 'AIzaSyA64bLOsQ0jjQPAkmHCdL8NwaQZWRIQhDk'
     genai.configure(api_key=api_key)
 
@@ -66,7 +65,7 @@ async def read_root():
         "max_output_tokens": 8192,
         "response_mime_type": "text/plain",
     }
-    print("boop")  
+   
     model = genai.GenerativeModel(
         model_name="gemini-1.5-flash",
         generation_config=generation_config,
@@ -125,7 +124,7 @@ async def read_root():
         return response.json().get('organic_results', [])
 
     resultados = google_search(text)
-
+    print
     for result in resultados:
         print(result['title'])
         print(result['link'])
