@@ -56,7 +56,7 @@ async def read_root():
 
 
     print("algo cambio dentro de lotso")  
-    tags, texts, colors = analyze_image(image_path)
+    tags, texts, colors = analyze_image(image_url)
     print("boop")  
     api_key = 'AIzaSyA64bLOsQ0jjQPAkmHCdL8NwaQZWRIQhDk'
     genai.configure(api_key=api_key)
