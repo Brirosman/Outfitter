@@ -97,18 +97,20 @@
 
         function sendImage(file) {
             const formData = new FormData();
-            formData.append('image', file);
+            formData.append('file', file); 
 
-            fetch('http://127.0.0.1:8000/links.html', { 
+            fetch('http://127.0.0.1:8000/upload-to-cloudinary/', { 
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
+                alert("Archivo subido exitosamente a Cloudinary. URL: " + data.url);
             })
             .catch((error) => {
                 console.error('Error:', error);
+                alert("Error al subir el archivo.");
             });
         }
 
