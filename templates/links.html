@@ -99,7 +99,7 @@
             const formData = new FormData();
             formData.append('file', file); 
 
-            fetch('http://127.0.0.1:5500/upload-to-cloudinary/', { 
+            fetch('http://127.0.0.1:8000/upload-to-cloudinary/', { 
                 method: 'POST',
                 body: formData
             })
