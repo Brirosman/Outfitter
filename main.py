@@ -4,7 +4,7 @@ from typing import Union
 import google.generativeai as genai
 import urllib3
 import requests
-
+from fastapi.responses import HTMLResponse
 
 
 app = FastAPI()
@@ -12,23 +12,15 @@ app = FastAPI()
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-#a
 
 
-@app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-@app.get("/links.html", response_class=HTMLResponse)
-async def home(request: Request):
-    return templates.TemplateResponse("links.html", {"request": request})
 
 @app.get("/update")
 async def read_root():
 
     api_key = 'acc_3798ba95def9b0d'
     api_secret = '2a604eae7c4db9e8868f22ba49960559'
-    image_path = 'IA/Fotos/river.jpg'
+    image_path = 'https://res.cloudinary.com/dtb2lrzet/image/upload/v1731584511/abejtjchko5b9fgvpuyx.jpg'
 
     def analyze_image(image_path):
         tags, extracted_texts, color_info = [], [], []
