@@ -18,22 +18,19 @@ async def read_root():
 
     
     def analyze_image(image_url):
-        nombre_posta, extracted_texts, colores_prenda = [], [], []
-
-        response = requests.post(
-            'https://api.imagga.com/v2/tags',
+        tags, extracted_texts, color_info = [], [], []
+        
+        response = requests.get(
+            'https://api.imagga.com/v2/tags?image_url=%s' % image_url,
             auth=(api_key, api_secret),
-            data={'image_url': image_url},
             verify=False
         )
         tags = response.json()
-
         nombre_posta = [tag['tag']['en'] for tag in tags['result']['tags'] if tag['confidence'] > 15]
 
-        response = requests.post(
-            'https://api.imagga.com/v2/text',
+        response = requests.get(
+            'https://api.imagga.com/v2/text?image_url=%s' % image_url,
             auth=(api_key, api_secret),
-            data={'image_url': image_url},
             verify=False
         )
         text_data = response.json()
@@ -41,10 +38,9 @@ async def read_root():
         if 'result' in text_data and 'text' in text_data['result']:
             extracted_texts = [item['data'] for item in text_data['result']['text']]
 
-        response = requests.post(
-            'https://api.imagga.com/v2/colors',
+        response = requests.get(
+            'https://api.imagga.com/v2/colors?image_url=%s' % image_url,
             auth=(api_key, api_secret),
-            data={'image_url': image_url},
             verify=False
         )
         colors = response.json()
@@ -54,7 +50,8 @@ async def read_root():
             for color in dominant_colors
         ]
 
-        return nombre_posta, extracted_texts, colores_prenda
+
+    return nombre_posta, extracted_texts, colores_prenda
 
     tags, texts, colors = analyze_image(image_url)
 
