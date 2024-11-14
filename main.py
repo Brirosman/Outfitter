@@ -18,7 +18,7 @@ async def read_root():
 
     
     def analyze_image(image_url):
-        tags, extracted_texts, color_info = [], [], []
+        nombre_posta, extracted_texts, colores_prenda = [], [], []
 
         response = requests.post(
             'https://api.imagga.com/v2/tags',
@@ -27,9 +27,9 @@ async def read_root():
             verify=False
         )
         tags = response.json()
-        return {"Msg": tags}
+
         nombre_posta = [tag['tag']['en'] for tag in tags['result']['tags'] if tag['confidence'] > 15]
-    
+
         response = requests.post(
             'https://api.imagga.com/v2/text',
             auth=(api_key, api_secret),
@@ -40,7 +40,7 @@ async def read_root():
                     
         if 'result' in text_data and 'text' in text_data['result']:
             extracted_texts = [item['data'] for item in text_data['result']['text']]
-            
+
         response = requests.post(
             'https://api.imagga.com/v2/colors',
             auth=(api_key, api_secret),
@@ -75,20 +75,18 @@ async def read_root():
     )
 
     instruccion_gemino = model.start_chat(
-        history=[
-            {
-                "role": "user",
-                "parts": [
-                    "Vas a recibir información sobre una imagen que muestra una prenda de ropa o accesorio. "
-                    "Tu trabajo es hacer una búsqueda en Google para encontrar dónde comprarla, usando una frase simple. Aquí te explico qué hacer:\n\n"
-                    "1. Ropa: Fíjate en qué tipo de prenda aparece en la imagen (camiseta, pantalón, sombrero, etc.) y describe la prenda con detalles.\n\n"
-                    "2. Colores: Observa los colores de la prenda y di cuáles son. Asegúrate de identificar al menos dos colores.\n\n"
-                    "3. Texto Extraído: Si hay palabras en la prenda, escríbelas exactamente como están.\n\n"
-                    "Con esta información, haz una búsqueda en Google usando solo la frase:\n"
-                    "\"comprar [tipo de prenda] [color 1] [color 2] [texto extraído] online\"."
-                ],
-            },
-        ]
+        history=[{
+            "role": "user",
+            "parts": [
+                "Vas a recibir información sobre una imagen que muestra una prenda de ropa o accesorio. "
+                "Tu trabajo es hacer una búsqueda en Google para encontrar dónde comprarla, usando una frase simple. Aquí te explico qué hacer:\n\n"
+                "1. Ropa: Fíjate en qué tipo de prenda aparece en la imagen (camiseta, pantalón, sombrero, etc.) y describe la prenda con detalles.\n\n"
+                "2. Colores: Observa los colores de la prenda y di cuáles son. Asegúrate de identificar al menos dos colores.\n\n"
+                "3. Texto Extraído: Si hay palabras en la prenda, escríbelas exactamente como están.\n\n"
+                "Con esta información, haz una búsqueda en Google usando solo la frase:\n"
+                "\"comprar [tipo de prenda] [color 1] [color 2] [texto extraído] online\"."
+            ],
+        }]
     )
 
     input_data = f"{tags}\n"
@@ -137,4 +135,4 @@ async def read_root():
         print('-' * 50)
 
     links = [result['link'] for result in resultados]
-    # return {"Msg": links}
+    return {"Msg": links}
