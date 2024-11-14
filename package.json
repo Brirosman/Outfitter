@@ -17,6 +17,8 @@
   "homepage": "https://github.com/Brirosman/Outfitter#readme",
   "description": "",
   "dependencies": {
-    "axios": "^1.7.7"
+    "axios": "^1.7.7",
+    "cloudinary": "^2.5.1",
+    "multer": "^1.4.5-lts.1"
   }
 }

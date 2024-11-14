@@ -4,10 +4,36 @@ from typing import Union
 import google.generativeai as genai
 import urllib3
 import requests
-
+import cloudinary
+import cloudinary.uploader
+from fastapi import FastAPI, File, UploadFile
+import os
 app = FastAPI()
+
 print("buzzlightyear")
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+cloudinary.config(
+    cloud_name="dtb2lrzet",
+    api_key="475625168932265",
+    api_secret="QRZneD3fqb8G1vpNnMJ5JofE_MA"
+)
+@app.post("/upload-to-cloudinary/")
+async def upload_to_cloudinary(file: UploadFile = File(...)):
+    try:
+        temp_file_path = f"temp_{file.filename}"
+        with open(temp_file_path, "wb") as buffer:
+            buffer.write(await file.read())
+
+        upload_result = cloudinary.uploader.upload(temp_file_path)
+
+        os.remove(temp_file_path)
+
+        return {"Msg": upload_result["secure_url"]}
+    except Exception as e:
+        return {"error": str(e)}
+    
+    
 
 @app.get("/")
 async def read_root():
