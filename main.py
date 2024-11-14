@@ -15,7 +15,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 
-@app.get("/update")
+@app.get("/")
 async def read_root():
 
     api_key = 'acc_3798ba95def9b0d'
