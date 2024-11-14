@@ -27,7 +27,7 @@ async def read_root():
             verify=False
         )
         tags = response.json()
-        print(tags)
+        return {"Msg": tags}
         nombre_posta = [tag['tag']['en'] for tag in tags['result']['tags'] if tag['confidence'] > 15]
     
         response = requests.post(
@@ -137,4 +137,4 @@ async def read_root():
         print('-' * 50)
 
     links = [result['link'] for result in resultados]
-    return {"Msg": links}
+    # return {"Msg": links}
