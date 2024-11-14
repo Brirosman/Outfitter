@@ -121,7 +121,7 @@
         });
         async function analizar() {
             try {
-                const response = await axios.get("http://outfitter.onrender.com");
+                const response = await axios.get("http://outfitter.onrender.com/");
                 alert("Respuesta del servidor: " + JSON.stringify(response.data));
             } catch (error) {
                 console.error("Error al llamar al servidor:", error);
