@@ -30,13 +30,6 @@ app = FastAPI()
 # templates = Jinja2Templates(directory="templates")
 
 
-# @app.get("/inicio", response_class=HTMLResponse)
-# async def home(request: Request):
-#     return templates.TemplateResponse("index.html", {"request": request})
-
-# @app.get("/links.html", response_class=HTMLResponse)
-# async def home(request: Request):
-#     return templates.TemplateResponse("links.html", {"request": request})
 
 # # @app.post("/analizar/")
 # async def analyze_image (file: UploadFile = File(...)):
