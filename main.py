@@ -13,7 +13,17 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 #a
-@app.get("/")
+
+
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/links.html", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("links.html", {"request": request})
+
+@app.get("/update")
 async def read_root():
 
     api_key = 'acc_3798ba95def9b0d'
