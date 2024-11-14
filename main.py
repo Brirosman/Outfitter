@@ -48,12 +48,12 @@ async def read_root():
         colores_prenda = [
             (color.get('closest_palette_color'), color.get('closest_palette_color_parent'))
             for color in dominant_colors
-        ]
+         ]
 
 
-    return nombre_posta, extracted_texts, colores_prenda
-
-    tags, texts, colors = analyze_image(image_url)
+        return nombre_posta, extracted_texts, colores_prenda
+    
+        tags, texts, colors = analyze_image(image_url)
 
     api_key = 'AIzaSyA64bLOsQ0jjQPAkmHCdL8NwaQZWRIQhDk'
     genai.configure(api_key=api_key)
