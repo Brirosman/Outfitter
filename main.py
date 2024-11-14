@@ -60,7 +60,7 @@ async def read_root():
         return nombre_posta, extracted_texts, colores_prenda
 
     # Llamar a la función de análisis
-    tags, texts, colors = analyze_image(image_path)
+    tags, texts, colors = analyze_image(image_url)
 
     # Configuración de la API de Google Gemini
     api_key = 'AIzaSyA64bLOsQ0jjQPAkmHCdL8NwaQZWRIQhDk'
