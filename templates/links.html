@@ -19,15 +19,15 @@
         <main>
             <a href="index.html"><button>VOLVER</button></a>
             <img src="/media/Union.png" alt="Descripción de la imagen" class="imagen-bajo-boton">
-            
+            <button class="boton-analizar" onclick="analizar()">Analizar</button>
             <div class="upload-box" id="drop-area">
                 <div class="icon"></div>
                 <div class="text">Seleccione la prenda de ropa</div>
                 <button id="reset-btn" style="display: none;">Reiniciar</button>
                 <input type="file" id="fileElem" accept="image/png, image/jpeg" style="display: none;">
-                <button class="boton-analizar" onclick="analizar()">Analizar</button>
+                
             </div>
-            
+           
             <div class="links">RESULTADOS</div>
             <div class="Area-links"></div>
         </main>
@@ -108,10 +108,7 @@
                 console.log('Success:', data);
                 alert("Archivo subido exitosamente a Cloudinary. URL: " + data.url);
             })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert("Error al subir el archivo.");
-            });
+            
         }
 
         resetBtn.addEventListener('click', () => {
@@ -136,4 +133,5 @@
 </head>
     
 </body>
+
 </html>
