@@ -27,6 +27,7 @@
                 <input type="file" id="fileElem" accept="image/png, image/jpeg" style="display: none;">
                 <button class="boton-analizar" onclick="analizar()">Analizar</button>
             </div>
+            <script src="/static/links.js"></script>
             
             <div class="links">RESULTADOS</div>
             <div class="Area-links"></div>
@@ -99,7 +100,7 @@
             const formData = new FormData();
             formData.append('file', file); 
 
-            fetch('http://127.0.0.1:8000/upload-to-cloudinary/', { 
+            fetch('https://api.cloudinary.com/v1_1/dtb2lrzet/image/upload', { 
                 method: 'POST',
                 body: formData
             })
@@ -134,6 +135,6 @@
         
     </script>
 </head>
-    
+<script src="/static/links.js"></script>
 </body>
 </html>

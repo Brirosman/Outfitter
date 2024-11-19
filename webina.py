@@ -9,7 +9,6 @@ from fastapi.responses import JSONResponse
 import uvicorn
 from typing import Union
 
-app = FastAPI()
 # uvicorn.run(app, host="0.0.0.0")
 
 
