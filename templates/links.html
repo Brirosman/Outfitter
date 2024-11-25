@@ -19,15 +19,15 @@
         <main>
             <a href="index.html"><button>VOLVER</button></a>
             <img src="/media/Union.png" alt="Descripción de la imagen" class="imagen-bajo-boton">
-            
+            <button class="boton-analizar" onclick="analizar()">Analizar</button>
             <div class="upload-box" id="drop-area">
                 <div class="icon"></div>
                 <div class="text">Seleccione la prenda de ropa</div>
                 <button id="reset-btn" style="display: none;">Reiniciar</button>
                 <input type="file" id="fileElem" accept="image/png, image/jpeg" style="display: none;">
-                <button class="boton-analizar" onclick="analizar()">Analizar</button>
+                
             </div>
-            <script src="/static/links.js"></script>
+
             
             <div class="links">RESULTADOS</div>
             <div class="Area-links"></div>
@@ -97,31 +97,31 @@
         }
 
         function sendImage(file) {
-            const formData = new FormData();
-            formData.append('file', file); 
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'Outfitter'); // Usa este nombre de preset
 
-            fetch('https://api.cloudinary.com/v1_1/dtb2lrzet/image/upload', { 
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                alert("Archivo subido exitosamente a Cloudinary. URL: " + data.url);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert("Error al subir el archivo.");
-            });
+    fetch('https://api.cloudinary.com/v1_1/dtb2lrzet/image/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
+        return response.json(); 
+    })
+    .then(data => {
+        console.log('Success:', data);
+        alert("Archivo subido exitosamente. URL: " + data.secure_url);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Error al subir el archivo a Cloudinary.");
+    });
+    }
 
-        resetBtn.addEventListener('click', () => {
-            dropArea.innerHTML = `
-                <div class="icon"></div>
-                <div class="text">Arrastre archivo PNG</div>
-                <button id="reset-btn" style="display: none;">Reiniciar</button>
-            `;
-        });
+
         async function analizar() {
             try {
                 const response = await axios.get("http://outfitter.onrender.com/");
@@ -134,7 +134,7 @@
 
         
     </script>
-</head>
-<script src="/static/links.js"></script>
+    <script src="/static/links.js"></script>
 </body>
+
 </html>
