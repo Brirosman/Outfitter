@@ -142,27 +142,33 @@ function mandarurl(link) {
 }
     });
 }
- function analizar() {
-        const render = 'outfitter.onrender.com';
+function analizar() {
+    const render = 'outfitter.onrender.com';
 
-        axios.get(`http://${render}`)
-            .then(response => {
-                console.log('Response data:', response.data);
+    axios.get(`http://${render}`)
+        .then(response => {
+            console.log('Response data:', response.data);
+            alert('Respuesta recibida: ' + JSON.stringify(response.data));
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            if (error.response) {
+                alert('Error en la respuesta: ' + error.response.status);
+            } else if (error.request) {
+                alert('No se recibió respuesta del servidor.');
+            } else {
+                alert('Error al realizar la solicitud: ' + error.message);
+            }
+        });
+}
 
-                alert('Respuesta recibida: ' + JSON.stringify(response.data));
-            })
-            .catch(error => {
-                console.error('Error:', error.message);
-
-                alert('Ocurrió un error: ' + error.message);
-            });
-    }
 
     
 
 
         
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/static/links.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>

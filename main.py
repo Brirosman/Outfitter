@@ -20,10 +20,19 @@ from PIL import Image
 import io
 from pydantic import BaseModel
 import json
-
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:8000"],  # Cambia "*" por tu dominio específico en producción.
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 app.mount("/media", StaticFiles(directory="media"), name="media")
