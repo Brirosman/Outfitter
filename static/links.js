@@ -1,6 +1,7 @@
 const fileInput = document.getElementById("fileElem"); // Coincide con el ID en links.html
 const imageOutput = document.getElementById("output"); // Asegúrate de que exista en HTML
 let selectedFile; // Hacer que el archivo esté disponible globalmente
+let imagenUrl="";
 
 fileInput.addEventListener("change", () => {
     let [file] = fileInput.files;
@@ -21,6 +22,26 @@ fileInput.addEventListener("change", () => {
     };
     reader.readAsDataURL(file);
 });
+
+function mandarurl (secureUrl) {
+    console.log("mandarurl:", secureUrl)
+    fetch("http://127.0.0.1:8000/get-link", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ secure_url: secureUrl }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+     console.log("Respuesta del servidor:", data);
+     alert("Enlace enviado correctamente a FastAPI.");
+    })
+    .catch((error) => {
+     console.error("Error al enviar enlace:", error);
+     alert("Error al conectar con FastAPI.");
+    });
+}
 
 function uploadImage() {
     if (!selectedFile) {
@@ -47,13 +68,25 @@ function uploadImage() {
         if (data.secure_url) {
             console.log('Imagen subida exitosamente:', data.secure_url);
             alert(`Imagen subida correctamente: ${data.secure_url}`);
+
+            mandarurl(data.secure_url)
         } else {
             console.error('Error al subir imagen:', data);
             alert('Hubo un problema al subir la imagen.');
         }
+        
     })
     .catch(error => {
         console.error('Error al subir imagen:', error);
         alert('Error al conectar con Cloudinary.');
+        
     });
+
+
+
+
+   
 }
+
+
+

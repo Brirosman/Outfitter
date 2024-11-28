@@ -17,7 +17,7 @@
             </div>
         </header>
         <main>
-            <a href="index.html"><button>VOLVER</button></a>
+            <a href="/"><button>VOLVER</button></a>
             <img src="/media/Union.png" alt="Descripción de la imagen" class="imagen-bajo-boton">
             <button class="boton-analizar" onclick="analizar()">Analizar</button>
             <div class="upload-box" id="drop-area">
@@ -113,28 +113,59 @@
     })
     .then(data => {
         console.log('Success:', data);
-        alert("Archivo subido exitosamente. URL: " + data.secure_url);
+        secureUrl = data.secure_url;
+        alert("Archivo subido exitosamente. URL: " + secureUrl);
+        mandarurl(secureUrl);
     })
     .catch(error => {
         console.error('Error:', error);
         alert("Error al subir el archivo a Cloudinary.");
+let secureUrl;
+
+function mandarurl(link) {
+    console.log("mandarurl:", link);
+    fetch("http://127.0.0.1:8000/get-link", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ secure_url: link }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log("Respuesta del servidor:", data);
+        alert("Enlace enviado correctamente a FastAPI.");
+    })
+    .catch((error) => {
+        console.error("Error al enviar enlace:", error);
+        alert("Error al conectar con FastAPI.");
     });
+}
+    });
+}
+ function analizar() {
+        const render = 'outfitter.onrender.com';
+
+        axios.get(`http://${render}`)
+            .then(response => {
+                console.log('Response data:', response.data);
+
+                alert('Respuesta recibida: ' + JSON.stringify(response.data));
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+
+                alert('Ocurrió un error: ' + error.message);
+            });
     }
 
+    
 
-        async function analizar() {
-            try {
-                const response = await axios.get("http://outfitter.onrender.com/");
-                alert("Respuesta del servidor: " + JSON.stringify(response.data));
-            } catch (error) {
-                console.error("Error al llamar al servidor:", error);
-                alert("Error al llamar al servidor.");
-            }
-        }
 
         
     </script>
     <script src="/static/links.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>
