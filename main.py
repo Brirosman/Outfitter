@@ -20,17 +20,9 @@ from PIL import Image
 import io
 from pydantic import BaseModel
 import json
-from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://127.0.0.1:8000"],  # Cambia "*" por tu dominio específico en producción.
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -49,7 +41,7 @@ cloudinary.config(
 
 
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/inicio", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
@@ -69,7 +61,7 @@ class SecureURLRequest(BaseModel):
 
 
 
-@app.post("/get-link")
+@app.post("/")
 async def save_link(request: SecureURLRequest):
     global image_url
     image_url = request.secure_url  
