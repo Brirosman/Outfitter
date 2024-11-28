@@ -96,74 +96,87 @@
         }
 
         function sendImage(file) {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', 'Outfitter'); // Usa este nombre de preset
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'Outfitter'); // Usa este preset
 
-    fetch('https://api.cloudinary.com/v1_1/dtb2lrzet/image/upload', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json(); 
-    })
-    .then(data => {
-        console.log('Success:', data);
-        secureUrl = data.secure_url;
-        alert("Archivo subido exitosamente. URL: " + secureUrl);
-        mandarurl(secureUrl);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert("Error al subir el archivo a Cloudinary.");
-let secureUrl;
-
-function mandarurl(link) {
-    console.log("mandarurl:", link);
-    fetch("http://127.0.0.1:8000/get-link", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ secure_url: link }),
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log("Respuesta del servidor:", data);
-        alert("Enlace enviado correctamente a FastAPI.");
-    })
-    .catch((error) => {
-        console.error("Error al enviar enlace:", error);
-        alert("Error al conectar con FastAPI.");
-    });
-}
-    });
-}
-function analizar() {
-    const render = 'outfitter.onrender.com';
-
-    axios.get(`http://${render}`)
-        .then(response => {
-            console.log('Response data:', response.data);
-            alert('Respuesta recibida: ' + JSON.stringify(response.data));
+        // Subir la imagen a Cloudinary
+        fetch('https://api.cloudinary.com/v1_1/dtb2lrzet/image/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Imagen subida correctamente:', data);
+            const secureUrl = data.secure_url; // Obtener URL segura
+            alert("Archivo subido exitosamente. URL: " + secureUrl);
+            
+            // Ahora enviar la URL al backend FastAPI
+            mandarurl(secureUrl); // Llamar a la función para enviar la URL
         })
         .catch(error => {
-            console.error('Error:', error);
-            if (error.response) {
-                alert('Error en la respuesta: ' + error.response.status);
-            } else if (error.request) {
-                alert('No se recibió respuesta del servidor.');
-            } else {
-                alert('Error al realizar la solicitud: ' + error.message);
+            console.error('Error al subir el archivo a Cloudinary:', error);
+            alert("Error al subir el archivo a Cloudinary.");
+        });
+    }
+
+    // Esta es la función que enviará la URL de la imagen al servidor FastAPI
+    function mandarurl(link) {
+        console.log("Mandando URL al backend:", link);
+        
+        fetch("http://127.0.0.1:8000/get-link", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ secure_url: link }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Respuesta del servidor:", data);
+            alert("Enlace enviado correctamente a FastAPI.");
+        })
+        .catch(error => {
+            console.error("Error al enviar enlace:", error);
+            alert("Error al conectar con FastAPI.");
+        });
+    }
+
+    // Esta función llama al servidor FastAPI para analizar la imagen
+    function analizar() {
+    fetch("http://127.0.0.1:8000/analizar/")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`);
             }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Datos recibidos:", data);
+            if (data.links) {
+                displayLinks(data.links); // Mostrar los enlaces de productos en la UI
+            } else {
+                alert("No se encontraron resultados.");
+            }
+        })
+        .catch(error => {
+            console.error("Error al realizar el análisis:", error);
+            alert("Error al conectar con FastAPI: " + error.message);
         });
 }
 
+function displayLinks(links) {
+    const linksContainer = document.querySelector('.Area-links');
+    linksContainer.innerHTML = ''; // Limpiar cualquier contenido previo
 
-    
+    links.forEach(link => {
+        const linkElement = document.createElement('a');
+        linkElement.href = link;
+        linkElement.target = "_blank";
+        linkElement.textContent = link;
+        linksContainer.appendChild(linkElement);
+    });
+}
 
 
         

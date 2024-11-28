@@ -58,7 +58,7 @@ function uploadImage() {
     data.append("file", file);
     data.append("upload_preset", "default-preset");
 
-    // Envía la solicitud a Cloudinary
+    // Envía la solicitud a Cloudinary  
     fetch(uploadUrl, {
         method: 'POST',
         body: formData,
