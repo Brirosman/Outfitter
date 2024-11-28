@@ -145,32 +145,32 @@ header a:hover{
     font-size: 1.75em;
 }
 
-#somos-proya .container{
+#somos-outfitter .container{
     text-align: center;
     padding: 200px 12px;
     background-color: #FBFBD7;
 }
 
-#nuestros-programas{
+#nuestros-contenidos{
     background-color: rgb(30,30,30);
     color: white;
     text-align: center;
 }
 
-#nuestros-programas .container{
+#nuestros-contenidos .container{
     padding: 150px 12px;
 }
 
-#nuestros-programas h2{
+#nuestros-contenidos h2{
     margin-top: 0;
     font-size: 3.2em;
 }
 
-#nuestros-programas p{
+#nuestros-contenidos p{
     display: none;
 }
 
-#nuestros-programas .carta{
+#nuestros-contenidos .carta{
     background-position: center center;
     background-size: cover;
     padding: 50px 0px;
@@ -268,13 +268,13 @@ footer .container{
         font-size: 5em;
     }
 
-    #somos-proya .container{
+    #somos-outfitter .container{
         display: flex;
         justify-content: space-evenly;
 
     }
 
-    #somos-proya .texto{
+    #somos-outfitter .texto{
         width: 50%;
         max-width: 600px;
         text-align: initial;
@@ -287,12 +287,12 @@ footer .container{
     }
 
 
-    #somos-proya h2{
+    #somos-outfitter h2{
         margin-top: 0px;
     }
 
     
-    #somos-proya .img-container{
+    #somos-outfitter .img-container{
         background-image: url("/media/Logo1.png");
         background-size: contain;
         background-position: center center;
@@ -301,25 +301,25 @@ footer .container{
         background-repeat: no-repeat;
     }
 
-    #nuestros-programas .programas{
+    #nuestros-contenidos .contenidos{
         display: flex;
         justify-content: center;
     }
 
-    #nuestros-programas p{
+    #nuestros-contenidos p{
         display: block;
         margin-bottom: 30px;
     }
 
-    #nuestros-programas h2{
+    #nuestros-contenidos h2{
         font-size: 4em;
     }
 
-    #nuestros-programas h3{
+    #nuestros-contenidos h3{
         margin-top: 0;
     }
 
-    #nuestros-programas .carta{
+    #nuestros-contenidos .carta{
         padding: 50px;
         background-size: 100% 150px;
         background-repeat: no-repeat;
