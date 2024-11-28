@@ -61,14 +61,14 @@ class SecureURLRequest(BaseModel):
 
 
 
-@app.post("/")
+@app.post("/get-link")
 async def save_link(request: SecureURLRequest):
     global image_url
     image_url = request.secure_url  
     print("URL recibida:", image_url)
     return {"message": "URL recibida correctamente", "image_url": image_url}
 
-@app.get("/analizar/")
+@app.get("/")
 async def read_root():
 
     global image_url
