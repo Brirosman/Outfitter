@@ -153,7 +153,7 @@
         })
         .then(data => {
             console.log("Datos recibidos:", data);
-            if (data.links) {
+            if (data && data.links) {
                 displayLinks(data.links); // Mostrar los enlaces de productos en la UI
             } else {
                 alert("No se encontraron resultados.");
