@@ -151,7 +151,7 @@ async def analizar():
                 "1. Ropa: Fíjate en qué tipo de prenda aparece en la imagen (camiseta, pantalón, sombrero, etc.) y describe la prenda con detalles.\n\n"
                 "2. Colores: Observa los colores de la prenda y di cuáles son. Asegúrate de identificar al menos dos colores.\n\n"
                 "3. Texto Extraído: Si hay palabras en la prenda, escríbelas exactamente como están.\n\n"
-                "Con esta información, haz una búsqueda en Google usando solo la frase:\n"
+                "Con esta información,responde unicamente con la frase para la búsqueda en Google:\n"
                 "\"comprar [tipo de prenda] [color 1] [color 2] [texto extraído] online\"."
                 ],
             },
@@ -207,3 +207,15 @@ async def analizar():
         print(result['link'])
         print(result['snippet']) 
         print('-' * 50)
+
+    return {
+        "search_query": query,
+        "results": [
+            {
+                "title": result['title'],
+                "link": result['link'],
+                "snippet": result['snippet']
+            }
+            for result in resultados
+        ]
+    }

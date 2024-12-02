@@ -152,11 +152,11 @@
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
+            console.log("Datos recibidos:", result);
             if (data && data.links) {
                 displayLinks(data.links); // Mostrar los enlaces de productos en la UI
             } else {
-                alert("No se encontraron resultados.");
+                alert("");
             }
         })
         .catch(error => {
