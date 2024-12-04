@@ -1,211 +1,32 @@
-/* General */n:body {FB    margin: 0;on    font-family: Arial, sans-serif;ta    background-color: #FBFBD7;ma    overflow-x: hidden; /* Evitar desbordamientos horizontales */;};so.container {0.    max-width: 1500px;si    margin: 0 auto;      padding: 20px;  }  t:/* Botones */, button {es    font-size: 1.25em;      font-weight: bold;1;    padding: 10px 30px;ol    border-radius: 5px;r:    border: 2px solid rgba(0, 0, 0, 0.3);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-    color: white;
-    background-color: #8b6b41;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-button:hover {
-    background-color: sandybrown;
-    transform: scale(1.1);
-}
-
-.boton-analizar {
-    font-size: 1.25em;
-    font-weight: bold;
-    padding: 10px 30px;
-    border-radius: 5px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-    color: white;
-    background-color: #8b6b41;
-}
-
-#reset-btn {
-    display: none;
-    background-color: #8b6b41;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#reset-btn:hover {
-    background-color: sandybrown;
-}
-
-/* Encabezado */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 3px solid #d1c4a1;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #8b6b41;
-}
-
-.menu {
-    display: flex;
-    gap: 20px;
-}
-
-.menu-item {
-    font-size: 14px;
-    color: #8b6b41;
-    text-decoration: none;
-}
-
-.menu-item:hover {
-    text-decoration: underline;
-}
-
-/* Contenido Principal */
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.upload-box {
-    width: 600px;
-    height: 350px;
-    border: 2px solid #d1c4a1;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    bottom: 335px;
-    cursor: pointer;
-}
-
-.upload-box img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.upload-box.dragging {
-    background-color: #e1e7ff;
-    border-color: #333;
-}
-
-/* Resultados */
-.links {
-    font-size: 24px;
-    font-weight: bold;
-    color: #8b6b41;
-    margin-bottom: 20px; /* Agregar margen entre el texto 'RESULTADOS' y los resultados */
-    text-align: center; /* Centrar el texto */
-}
-
-/* Contenedor de resultados - área definida */
-.Area-links {
-    width: 600px;               /* Ancho fijo */
-    max-height: 300px;          /* Limitar la altura */
-    overflow-y: auto;           /* Permitir barra de desplazamiento */
-    padding: 15px;              /* Espaciado interno */
-    background-color: #fff;     /* Fondo blanco */
-    display: flex;              /* Flexbox para organizar resultados */
-    flex-direction: column;     /* Alinear resultados en una columna */
-    border-radius: 10px;        /* Bordes redondeados */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-    border: 2px solid #d1c4a1;  /* Borde */
-    margin-top: 20px;           /* Espaciado superior */
-}
-
-.Area-links div {
-    background-color: #f9f9f9;  /* Fondo claro */
-    padding: 10px;              /* Espaciado interno */
-    border-radius: 5px;         /* Bordes redondeados */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    margin-bottom: 10px;        /* Espaciado entre resultados */
-}
-
-.Area-links h4 {
-    margin: 0 0 5px;            /* Margen inferior */
-    font-size: 16px;            /* Tamaño de fuente */
-    color: #8b6b41;             /* Color del título */
-}
-
-.Area-links p {
-    margin: 0 0 5px;     rior */
-    font-size: 14px;            /* Tamaño del texto */
-    color: #555;                /* Color del texto */
-}
-
-.Area-links a {
-    color: #8b6b41;             /* Color del enlace */
-    text-decoration: none;      /* Sin subrayado */
-    font-size: 14px;            /* Tamaño del enlace */
-    word-wrap: break-word;      /* Ajustar enlaces largos */
-}
-
-.Area-links a:hover {
-    text-decoration: underline; /* Subrayado al pasar el mouse */
-}
-/* Estilos para la sección de resultados */
-#resultados {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #333;
-}
-#resultados a {
-    display: block;
-    margin-bottom: 5px;
-    color: #007bff;
-    text-decoration: none;
-}
-#resultados a:hover {
-    text-decoration: underline;
-}
- white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
+    background-color: #FBFBD7;
+    overflow-x: hidden;
+    
 }
 
-#reset-btn:hover {
-    background-color: sandybrown;
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Encabezado */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 3px solid #d1c4a1;
-}
+button{
+    font-size: 1.25em;
+    font-weight: bold;
+    padding: 10px 30px;
     border-radius: 5px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     color: white;
     background-color: #8b6b41;
+    position: relative;
+    left: 500px;
+    top: 50px;
+    transition: 0.2s;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-button:hover {
-    background-color: sandybrown;
-    transform: scale(1.1);
+    transition: transform 0.2s;
 }
 
 .boton-analizar {
@@ -213,27 +34,42 @@ button:hover {
     font-weight: bold;
     padding: 10px 30px;
     border-radius: 5px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     color: white;
-    background-color: #8b6b41;
+    background-color: #8b6b41; 
+}
+
+button:hover{
+    background-color: sandybrown;
+    transform: scale(1.1);
+}
+
+.upload-box img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.upload-box.dragging {
+    background-color: #e1e7ff;
+    border-color: #333;
 }
 
 #reset-btn {
     display: none;
-    background-color: #8b6b41;
+    background-color:#8b6b41;
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+    
 }
 
 #reset-btn:hover {
     background-color: sandybrown;
 }
 
-/* Encabezado */
 header {
     display: flex;
     justify-content: space-between;
@@ -263,7 +99,6 @@ header {
     text-decoration: underline;
 }
 
-/* Contenido Principal */
 main {
     display: flex;
     flex-direction: column;
@@ -287,92 +122,48 @@ main {
     cursor: pointer;
 }
 
-.upload-box img {
-    max-width: 100%;
-    max-height: 100%;
+.Area-links{
+    width: 600px;
+    height: 100px;
+    background-color: #fff;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d1c4a1;
+    position: relative;
+    bottom: 330px;
 }
 
-.upload-box.dragging {
-    background-color: #e1e7ff;
-    border-color: #333;
-}
-
-/* Resultados */
-.links {
+.links{
+    position: relative;
+    bottom: 330px;
     font-size: 24px;
     font-weight: bold;
     color: #8b6b41;
-    margin-bottom: 20px; /* Agregar margen entre el texto 'RESULTADOS' y los resultados */
-    text-align: center; /* Centrar el texto */
+   
 }
 
-/* Contenedor de resultados - área definida */
-.Area-links {
-    width: 600px;               /* Ancho fijo */
-    max-height: 300px;          /* Limitar la altura */
-    overflow-y: auto;           /* Permitir barra de desplazamiento */
-    padding: 15px;              /* Espaciado interno */
-    background-color: #fff;     /* Fondo blanco */
-    display: flex;              /* Flexbox para organizar resultados */
-    flex-direction: column;     /* Alinear resultados en una columna */
-    border-radius: 10px;        /* Bordes redondeados */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-    border: 2px solid #d1c4a1;  /* Borde */
-    margin-top: 20px;           /* Espaciado superior */
+.imagen-bajo-boton {
+    width: 250px; 
+    height: auto; 
+    display: flex; 
+    position: relative;
+    right: 480px;
+    
 }
 
-.Area-links div {
-    background-color: #f9f9f9;  /* Fondo claro */
-    padding: 10px;              /* Espaciado interno */
-    border-radius: 5px;         /* Bordes redondeados */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    margin-bottom: 10px;        /* Espaciado entre resultados */
+.icon {
+    width: 60px;
+    height: 60px;
+    background-color: #8b6b41;
+    clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 20% 100%, 0% 40%);
+    margin-bottom: 20px;
 }
 
-.Area-links h4 {
-    margin: 0 0 5px;            /* Margen inferior */
-    font-size: 16px;            /* Tamaño de fuente */
-    color: #8b6b41;             /* Color del título */
-}
-
-.Area-links p {
-    margin: 0 0 5px;            /* Margen inferior */
-    font-size: 14px;            /* Tamaño del texto */
-    color: #555;                /* Color del texto */
-}
-
-.Area-links a {
-    color: #8b6b41;             /* Color del enlace */
-    text-decoration: none;      /* Sin subrayado */
-    font-size: 14px;            /* Tamaño del enlace */
-    word-wrap: break-word;      /* Ajustar enlaces largos */
-}
-
-.Area-links a:hover {
-    text-decoration: underline; /* Subrayado al pasar el mouse */
-}
-/* Estilos para la sección de resultados */
-/* Resultados */
-#resultados {
-    width: 600px;               /* Ancho fijo */
-    max-height: 300px;          /* Limitar la altura */
-    overflow-y: auto;           /* Permitir barra de desplazamiento */
-    padding: 15px;              /* Espaciado interno */
-    background-color: #fff;     /* Fondo blanco */
-    display: flex;              /* Flexbox para organizar resultados */
-    flex-direction: column;     /* Alinear resultados en una columna */
-    border-radius: 10px;        /* Bordes redondeados */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-    border: 2px solid #d1c4a1;  /* Borde */
-    margin-top: 20px;           /* Espaciado superior */
-
-}
-#resultados a {
-    display: block;
-    margin-bottom: 5px;
-    color: #007bff;
-    text-decoration: none;
-}
-#resultados a:hover {
-    text-decoration: underline;
+.text {
+    font-size: 16px;
+    color: #8b6b41;
 }

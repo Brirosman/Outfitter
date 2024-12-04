@@ -3,6 +3,7 @@ import uvicorn
 from typing import Union
 import google.generativeai as genai
 import urllib3
+import requests
 import cloudinary
 import cloudinary.uploader
 from fastapi import FastAPI, File, UploadFile
@@ -13,13 +14,23 @@ from fastapi.staticfiles import StaticFiles
 from fastapi import Request
 from fastapi import FastAPI, Request, UploadFile, File
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from PIL import Image
 import io
 from pydantic import BaseModel
 import json
-import requests
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8000"],  # Permite todos los orígenes (ajusta según sea necesario)
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos los métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permite todos los encabezados
+)
 
 
 
@@ -65,7 +76,6 @@ async def get_link(request: SecureURLRequest):
     print("URL recibida:", image_url)
     return {"message": "URL recibida correctamente", "image_url": image_url}
 
-<<<<<<< HEAD
 
 @app.get("/analizar")
 async def read_root(image_url: str):
@@ -76,24 +86,6 @@ async def read_root(image_url: str):
     print("peli 1")  
     def analyze_image(image_url):
         
-=======
-@app.get("/analizar/")
-async def analizar():
-    import requests
-
-    # Validar si la URL de la imagen está disponible
-    global image_url    
-    print("aaaa de la imagen:", image_url)
-
-    if not image_url:
-        return {"error": "No se ha proporcionado ninguna URL para analizar"}
-
-    api_key = 'acc_1f76b9ff947098b'
-    api_secret = '34293915c138a05bec9228055c66d430'
-
-    def analyze_image(image_url):
-
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
         tags, extracted_texts, color_info = [], [], []
         response = requests.get(
             'https://api.imagga.com/v2/tags?image_url=%s' % image_url,
@@ -102,13 +94,7 @@ async def analizar():
         )
         
         tags = response.json()
-<<<<<<< HEAD
         nombre_posta = [tag['tag']['en'] for tag in tags['result']['tags'] if tag['confidence'] > 15]
-=======
-        nombre_posta = []
-        if 'result' in tags and 'tags' in tags['result']:
-            nombre_posta = [tag['tag']['en'] for tag in tags['result']['tags'] if tag['confidence'] > 15]
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
 
         response = requests.get(
             'https://api.imagga.com/v2/text?image_url=%s' % image_url,
@@ -119,12 +105,9 @@ async def analizar():
         if 'result' in text_data and 'text' in text_data['result']:
             extracted_texts = [item['data'] for item in text_data['result']['text']]
 
-<<<<<<< HEAD
 
             
 
-=======
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
         response = requests.get(
             'https://api.imagga.com/v2/colors?image_url=%s' % image_url,
             auth=(api_key, api_secret),
@@ -137,7 +120,6 @@ async def analizar():
             for color in dominant_colors
         ]
 
-<<<<<<< HEAD
         return nombre_posta, extracted_texts, colores_prenda
 
     print("algo cambio dentro de lotso")  
@@ -147,67 +129,31 @@ async def analizar():
     genai.configure(api_key=api_key)
 
     generation_config = {
-=======
-        print(nombre_posta, extracted_texts, colores_prenda)
-        return nombre_posta, extracted_texts, colores_prenda
-
-
-
-
-    tags, texts, colors = analyze_image(image_url)
-        
-    # Gemini API
-
-    api_key = 'AIzaSyCESgUHqyaK3APZr36zgHxrN-Sp36x9zb4'
-    genai.configure(api_key=api_key)
-
-    generation_config = {   
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
         "temperature": 1,
         "top_p": 0.95,
         "top_k": 64,
         "max_output_tokens": 8192,
         "response_mime_type": "text/plain",
     }
-<<<<<<< HEAD
    
-=======
-
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
     model = genai.GenerativeModel(
         model_name="gemini-1.5-flash",
         generation_config=generation_config,
     )
 
     instruccion_gemino = model.start_chat(
-<<<<<<< HEAD
         history=[{
             "role": "user",
             "parts": [
                 "Vas a recibir información sobre una imagen que muestra una prenda de ropa o accesorio. "
-=======
-        history=[
-            {
-                "role": "user",
-                "parts": [
-                    "Vas a recibir información sobre una imagen que muestra una prenda de ropa o accesorio. "
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
                 "Tu trabajo es hacer una búsqueda en Google para encontrar dónde comprarla, usando una frase simple. Aquí te explico qué hacer:\n\n"
                 "1. Ropa: Fíjate en qué tipo de prenda aparece en la imagen (camiseta, pantalón, sombrero, etc.) y describe la prenda con detalles.\n\n"
                 "2. Colores: Observa los colores de la prenda y di cuáles son. Asegúrate de identificar al menos dos colores.\n\n"
                 "3. Texto Extraído: Si hay palabras en la prenda, escríbelas exactamente como están.\n\n"
-<<<<<<< HEAD
                 "Con esta información, haz una búsqueda en Google usando solo la frase:\n"
                 "\"comprar [tipo de prenda] [color 1] [color 2] [texto extraído] online\"."
             ],
         }]
-=======
-                "Con esta información,responde unicamente con la frase para la búsqueda en Google:\n"
-                "\"comprar [tipo de prenda] [color 1] [color 2] [texto extraído] online\"."
-                ],
-            },
-        ]
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
     )
 
     input_data = f"{tags}\n"
@@ -217,11 +163,7 @@ async def analizar():
         input_data += f"Color: {color_name}, Parent Color: {color_parent}\n"
 
     response = instruccion_gemino.send_message(input_data)
-<<<<<<< HEAD
     print("pelota iconica")  
-=======
-
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
     candidates = response.candidates
     content = candidates[0].content
     parts = content.parts
@@ -229,14 +171,6 @@ async def analizar():
     text = text.strip('"')
     print(text)
 
-<<<<<<< HEAD
-=======
-    # Serp API
-    import requests
-    import urllib3 
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
     query = text
 
     def google_search(query):
@@ -245,8 +179,8 @@ async def analizar():
             "engine": "google",
             "q": query,
             "api_key": "17791f133d05bd9e5629260faf196e641e395e087849f32e0361e416956ddb27",
-            "safe":"active",
-            "hl":"es",
+            "safe": "active",
+            "hl": "es",
             "gl": "ar",
             "location": "Argentina",
         }
@@ -260,31 +194,13 @@ async def analizar():
         return response.json().get('organic_results', [])
 
     resultados = google_search(text)
-<<<<<<< HEAD
     print
-=======
-
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
     for result in resultados:
         print(result['title'])
         print(result['link'])
         print(result['snippet']) 
         print('-' * 50)
 
-<<<<<<< HEAD
     links = [result['link'] for result in resultados]
     print(links)
     return {"Msg": links}
-=======
-    return {
-        "search_query": query,
-        "results": [
-            {
-                "title": result['title'],
-                "link": result['link'],
-                "snippet": result['snippet']
-            }
-            for result in resultados
-        ]
-    }
->>>>>>> 385f776c8bff3d546c2b7d0a0a10aa190d95e9de
