@@ -24,12 +24,14 @@
                 <div class="text">Seleccione la prenda de ropa</div>
                 <button id="reset-btn" style="display: none;">Reiniciar</button>
                 <input type="file" id="fileElem" accept="image/png, image/jpeg" style="display: none;">
+            </div>
+        
+            <div class="links">RESULTADOS</div>
+            
+            <div class="Area-links" id="resultados">
                 
             </div>
-
-            
-            <div class="links">RESULTADOS</div>
-            <div class="Area-links"></div>
+        
         </main>
     </div>
 
@@ -153,8 +155,8 @@
         })
         .then(data => {
             console.log("Datos recibidos:", data);
-            if (data.links) {
-                displayLinks(data.links); // Mostrar los enlaces de productos en la UI
+            if (data && data.results) {
+                displayLinks(data.results); // Mostrar los resultados en la UI
             } else {
                 alert("No se encontraron resultados.");
             }
@@ -165,20 +167,26 @@
         });
 }
 
-function displayLinks(links) {
+function displayLinks(results) {
     const linksContainer = document.querySelector('.Area-links');
-    linksContainer.innerHTML = ''; // Limpiar cualquier contenido previo
+    linksContainer.innerHTML = ''; // Limpiar contenido previo
 
-    links.forEach(link => {
-        const linkElement = document.createElement('a');
-        linkElement.href = link;
-        linkElement.target = "_blank";
-        linkElement.textContent = link;
-        linksContainer.appendChild(linkElement);
+    results.forEach(result => {
+        const resultDiv = document.createElement('div');
+        resultDiv.style.marginBottom = '10px'; // Espaciado entre resultados
+        resultDiv.style.padding = '10px';      // Espaciado interno
+        resultDiv.style.borderRadius = '5px';  // Bordes redondeados
+        resultDiv.style.boxShadow = '0px 2px 4px rgba(0, 0, 0, 0.1)'; // Sombra ligera
+        resultDiv.style.backgroundColor = '#f9f9f9'; // Fondo claro
+
+        resultDiv.innerHTML = `
+            <h4 style="margin: 0; font-size: 16px; color: #8b6b41;">${result.title}</h4>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;">${result.snippet}</p>
+            <a href="${result.link}" target="_blank" style="color: #8b6b41; text-decoration: none;">${result.link}</a>
+        `;
+        linksContainer.appendChild(resultDiv);
     });
 }
-
-
         
     </script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
